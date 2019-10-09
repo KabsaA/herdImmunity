@@ -196,19 +196,19 @@ class Simulation(object):
 
 if __name__ == "__main__":
     params = sys.argv[1:]
-    virus_name = str(params[2])
-    basic_repro_num = float(params[4])
-    mortality_rate = float(params[3])
+    virus_name = str(params[0])
+    repro_num = float(params[1])
+    mortality_rate = float(params[2])
 
-    pop_size = int(params[0])
-    vacc_percentage = float(params[1])
+    pop_size = int(params[3])
+    vacc_percentage = float(params[4])
 
     if len(params) == 6:
         initial_infected = int(params[5])
     else:
         initial_infected = 1
 
-    virus = Virus(virus_name, basic_repro_num, mortality_rate)
+    virus = Virus(virus_name, repro_num, mortality_rate)
     sim = Simulation(pop_size, vacc_percentage, virus, initial_infected)
 
     sim.run()
