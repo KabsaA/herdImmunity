@@ -155,18 +155,6 @@ class Simulation(object):
         assert person.is_alive == True
         assert random_person.is_alive == True
 
-        # TODO: Finish this method.
-        #  The possible cases you'll need to cover are listed below:
-            # random_person is vaccinated:
-            #     nothing happens to random person.
-            # random_person is already infected:
-            #     nothing happens to random person.
-            # random_person is healthy, but unvaccinated:
-            #     generate a random number between 0 and 1.  If that number is smaller
-            #     than repro_rate, random_person's ID should be appended to
-            #     Simulation object's newly_infected array, so that their .infected
-            #     attribute can be changed to True at the end of the time step.
-        # TODO: Call slogger method during this method.
         if random_person.is_vaccinated:
             self.logger.log_interaction(person, random_person, False, True, False)
         elif random_person.infection != None:
@@ -196,7 +184,7 @@ class Simulation(object):
 
 if __name__ == "__main__":
     params = sys.argv[1:]
-    virus_name = str(params[0])
+    virus_name = str(virus2.name)
     repro_num = float(params[1])
     mortality_rate = float(params[2])
 
