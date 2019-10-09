@@ -29,7 +29,7 @@ class Simulation(object):
         self.current_infected = 0 # Int
         self.vacc_percentage = vacc_percentage # float between 0 and 1
         self.total_dead = 0 # Int
-        self.file_name = "logs{}_simulation_pop_{}_vp_{}_infected_{}.txt".format(
+        self.file_name = "Name:{}Population:{}Vaccinated:{}Infected:{}.txt".format(
             self.virus_name, self.pop_size, self.vacc_percentage, self.initial_infected)
         self.logger = Logger(self.file_name)
         self.newly_infected = []
