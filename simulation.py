@@ -7,7 +7,7 @@ from virus import Virus
 
 class Simulation(object):
 
-    def __init__(self, pop_size, vacc_percentage, virus, initial_infected=1):
+    def __init__(self, pop_size, vacc_percentage, virus, initial_infected):
         # TODO: Create a Logger object and bind it to self.logger.
         # Remember to call the appropriate logger method in the corresponding parts of the simulation.
         # TODO: Call self._create_population() and pass in the correct parameters.
@@ -23,7 +23,7 @@ class Simulation(object):
         self.virus_name = virus_name
         self.mortality_rate = mortality_rate
         self.basic_repro_num = basic_repro_num
-        self.initial_infected = initial_infected # Int
+        self.initial_infected = 1 # Int
         self.total_infected = 0 # Int
         self.total_vaccinated = 0
         self.current_infected = 0 # Int
@@ -36,7 +36,7 @@ class Simulation(object):
         self.population = self._create_population() # List of Person objects
         self.logger.write_metadata(self.pop_size, self.vacc_percentage, self.virus_name, self.mortality_rate, self.basic_repro_num)
 
-    def _create_population(self, initial_infected):
+    def _create_population(self, initial_infected=10):
         '''This method will create the initial population.
             Args:
                 initial_infected (int): The number of infected people that the simulation
@@ -184,19 +184,19 @@ class Simulation(object):
 
 if __name__ == "__main__":
     params = sys.argv[1:]
-    virus_name = str(params[0])
-    repro_num = float(params[1])
-    mortality_rate = float(params[2])
+    print(params)
+    virus_name = str(params[2])
+    basic_repro_num = float(params[4])
+    mortality_rate = float(params[3])
 
-    pop_size = int(params[3])
-    vacc_percentage = float(params[4])
+    pop_size = int(params[0])
+    vacc_percentage = float(params[1])
 
-    if len(params) == 6:
-        initial_infected = int(params[5])
-    else:
-        initial_infected = 1
+    initial_infected = int(params[5])
+    #else:
+    #    initial_infected = 1
 
-    virus = Virus(name, repro_rate, mortality_rate)
+    virus = Virus(virus_name, basic_repro_num, mortality_rate)
     sim = Simulation(pop_size, vacc_percentage, initial_infected, virus)
 
     sim.run()
