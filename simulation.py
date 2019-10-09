@@ -70,14 +70,9 @@ class Simulation(object):
         return alive_infected
 
     def _simulation_should_continue(self):
-        ''' The simulation should only end if the entire population is dead
-        or everyone is vaccinated.
-            Returns:
-                bool: True for simulation should continue, False if it should end.
-        '''
         # TODO: Complete this helper method.  Returns a Boolean.
 
-        if self.get_infected() == 0:
+        if self.get_infected() == self.pop_size:
             return False
         else:
             return True
