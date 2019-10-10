@@ -1,1 +1,1 @@
-1000000.9Ebola0.70.25
+Population: 100000 Percentage: 0.9 Name of : Ebola Mortality: 0.7Repro Num: 0.25

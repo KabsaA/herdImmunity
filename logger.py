@@ -1,11 +1,5 @@
 class Logger(object):
     ''' Utility class responsible for logging all interactions during the simulation. '''
-    # TODO: Write a test suite for this class to make sure each method is working
-    # as expected.
-
-    # PROTIP: Write your tests before you solve each function, that way you can
-    # test them one by one as you write your class.
-
     def __init__(self, file_name):
         # TODO:  Finish this initialization method. The file_name passed should be the
         # full file name of the file that the logs will be written to.
@@ -24,8 +18,9 @@ class Logger(object):
         # NOTE: Make sure to end every line with a '/n' character to ensure that each
         # event logged ends up on a separate line!
         self.pop_size = pop_size
-        file = open(self.file_name, 'w+')
-        file.write(str(pop_size)+str(vacc_percentage)+str(virus_name)+str(mortality_rate)+str(basic_repro_num))
+        file = open(self.file_name, 'w')
+        file.write("Population: " + str(pop_size)+ " Percentage: "
+        + str(vacc_percentage)+ " Name of : " + str(virus_name)+ " Mortality: " + str(mortality_rate)+ "Repro Num: " + str(basic_repro_num))
         file.close()
 
     def log_interaction(self, person, random_person, random_person_sick=None,

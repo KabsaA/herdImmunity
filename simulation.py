@@ -37,13 +37,7 @@ class Simulation(object):
         self.logger.write_metadata(self.pop_size, self.vacc_percentage, self.virus_name, self.mortality_rate, self.basic_repro_num)
 
     def _create_population(self, initial_infected=10):
-        '''This method will create the initial population.
-            Args:
-                initial_infected (int): The number of infected people that the simulation
-                will begin with.
-            Returns:
-                list: A list of Person objects.
-        '''
+
         # TODO: Finish this method!  This method should be called when the simulation
         # begins, to create the population that will be used. This method should return
         # an array filled with Person objects that matches the specifications of the
@@ -52,23 +46,25 @@ class Simulation(object):
 
         # Use the attributes created in the init method to create a population that has
         # the correct intial vaccination percentage and initial infected.
-        pop = []
-        vacc_num = int(self.pop_size * self.vacc_percentage)
-        for person_index in range(self.pop_size):
-            if person_index < initial_infected:
-                pop.append(Person(person_index, True))
+        population = []
+        vaccinatedAmt = int(self.pop_size * self.vacc_percentage)
+        for personInd in range(self.pop_size):
+            if personInd < initial_infected:
+                population.append(Person(personInd, True))
             else:
-                pop.append(Person(person_index, False))
+                population.append(Person(personInd, False))
 
-        return pop
+        return population
 
     def get_infected(self):
         alive_infected = []
+        self.current_infected = 0
         for person in self.population:
             if person.infection and person.is_alive:
                 alive_infected.append(person)
-        return alive_infected
+                self.current_infected += 1
 
+        return alive_infected
     def _simulation_should_continue(self):
         # TODO: Complete this helper method.  Returns a Boolean.
 
@@ -152,11 +148,10 @@ class Simulation(object):
         if random_person.is_vaccinated:
             self.logger.log_interaction(person, random_person,random_person_vacc=True)
             random_person_vacc = True
-            # self.uninfected.remove(random_person)
+
         elif random_person.infection:
             self.logger.log_interaction(person, random_person, random_person_sick=True)
-            # self.current_infected += 1
-            # self.uninfected.remove(random_person)
+
         elif random_person.infection is None and not random_person.is_vaccinated:
             rand_num = random.random()
             if rand_num  <= person.infection.repro_rate:
