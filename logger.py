@@ -43,13 +43,13 @@ class Logger(object):
         # represent all the possible edge cases. Use the values passed along with each person,
         # along with whether they are sick or vaccinated when they interact to determine
         # exactly what happened in the interaction and create a String, and write to your logfile.
-        file = open(self.file_name, 'a+')
+        file = open(self.file_name, 'a')
         if did_infect == True:
             file.write(print(f"{person._id} infects {random_person._id}\n"))
         elif random_person_vacc == True and did_infect == None:
-            file.write(print(f"{person._id} didn't infect {random_person._id} because they are vaccinated\n"))
+            file.write(print(f"{person._id} didn't infect {random_person._id} because vaccinated\n"))
         elif random_person_sick == True and did_infect == None:
-            file.write(print(f"{person._id} didn't infect {random_person._id} because they are sick\n"))
+            file.write(print(f"{person._id} didn't infect {random_person._id} because already sick\n"))
         else:
             file.write(print(f"{person._id} didn't infect {random_person._id}\n"))
 
@@ -60,7 +60,7 @@ class Logger(object):
         # TODO: Finish this method. If the person survives, did_die_from_infection
         # should be False.  Otherwise, did_die_from_infection should be True.
         # Append the results of the infection to the logfile
-        file = open(self.file_name,"a+")
+        file = open(self.file_name,"a")
         if did_die_from_infection:
             file.write(f"{person._id} died from infection\n")
         else:
@@ -68,7 +68,7 @@ class Logger(object):
         file.close()
 
     def log_time_step(self, time_step_number):
-
+        #stretch
         # TODO: Finish this method. This method should log when a time step ends, and a
         # new one begins.
         # NOTE: Here is an opportunity for a stretch challenge!

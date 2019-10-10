@@ -72,7 +72,7 @@ class Simulation(object):
     def _simulation_should_continue(self):
         # TODO: Complete this helper method.  Returns a Boolean.
 
-        if self.get_infected() == (self.pop_size**0.9):
+        if self.get_infected() == self.pop_size:
             return False
         else:
             return True
