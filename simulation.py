@@ -72,7 +72,7 @@ class Simulation(object):
     def _simulation_should_continue(self):
         # TODO: Complete this helper method.  Returns a Boolean.
 
-        if self.get_infected() == self.pop_size:
+        if self.total_vaccinated + self.total_dead >= self.pop_size:
             return False
         else:
             return True
@@ -149,18 +149,21 @@ class Simulation(object):
         # in as params
         assert person.is_alive == True
         assert random_person.is_alive == True
-
         if random_person.is_vaccinated:
-            self.logger.log_interaction(person, random_person, False, True, False)
-        elif random_person.infection != None:
-            self.logger.log_interaction(person, random_person, True, False, False)
-        else:
-            ran_chance = random.random()
-            if ran_chance < person.infection.repro_rate:
+            self.logger.log_interaction(person, random_person,random_person_vacc=True)
+            random_person_vacc = True
+            # self.uninfected.remove(random_person)
+        elif random_person.infection:
+            self.logger.log_interaction(person, random_person, random_person_sick=True)
+            # self.current_infected += 1
+            # self.uninfected.remove(random_person)
+        elif random_person.infection is None and not random_person.is_vaccinated:
+            rand_num = random.random()
+            if rand_num  <= person.infection.repro_rate:
                 self.newly_infected.append(random_person._id)
-                self.logger.log_interaction(person, random_person, False, False, True)
-            else:
-                self.logger.log_interaction(person, random_person, False, False, False)
+                self.current_infected += 1
+                self.total_infected += 1
+                self.logger.log_interaction(person, random_person,did_infect=True)
 
 
     def _infect_newly_infected(self):

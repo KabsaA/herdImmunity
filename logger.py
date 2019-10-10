@@ -45,13 +45,13 @@ class Logger(object):
         # exactly what happened in the interaction and create a String, and write to your logfile.
         file = open(self.file_name, 'a')
         if did_infect == True:
-            file.write(print(f"{person._id} infects {random_person._id}\n"))
+            file.write((f"{person._id} infects {random_person._id}\n"))
         elif random_person_vacc == True and did_infect == None:
-            file.write(print(f"{person._id} didn't infect {random_person._id} because vaccinated\n"))
+            file.write((f"{person._id} didn't infect {random_person._id} because vaccinated\n"))
         elif random_person_sick == True and did_infect == None:
-            file.write(print(f"{person._id} didn't infect {random_person._id} because already sick\n"))
+            file.write((f"{person._id} didn't infect {random_person._id} because already sick\n"))
         else:
-            file.write(print(f"{person._id} didn't infect {random_person._id}\n"))
+            file.write((f"{person._id} didn't infect {random_person._id}\n"))
 
         file.close()
 
